@@ -1,0 +1,120 @@
+/* Google FontsからSpace Monoをインポート */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+/* ページ全体のスタイル */
+body {
+    margin: 0;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+/* アニメーションの舞台となるコンテナ */
+.animation-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* Cubeアイコンのスタイル */
+.cube-icon {
+    width: 6vmin; 
+    height: 6vmin;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%); 
+    animation: rotate-only 2.0s linear infinite;
+    z-index: 10;
+}
+
+/* アイコンの回転アニメーション */
+@keyframes rotate-only {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* --- アイコンから出るパーティクル関連のスタイル --- */
+.particle-container {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    width: 15vmin;
+    height: 15vmin;
+    z-index: 5;
+}
+
+.particle-container span {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #cccccc;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: particle-rise 1.0s linear infinite;
+}
+
+@keyframes particle-rise {
+    0% {
+        opacity: var(--start-opacity);
+        transform: translate(var(--start-x), var(--start-y)) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--end-x), var(--end-y)) rotate(360deg);
+    }
+}
+
+/* 個々のパーティクルの設定 */
+.particle-container span:nth-child(1){animation-delay:-0.1s;--start-x:-15px;--start-y:10px;--end-x:5px;--end-y:-180px;--start-opacity:0.8;}
+.particle-container span:nth-child(2){animation-delay:-0.5s;--start-x:15px;--start-y:-5px;--end-x:-5px;--end-y:-200px;--start-opacity:0.5;transform:scale(0.8);}
+.particle-container span:nth-child(3){animation-delay:-0.9s;--start-x:-10px;--start-y:20px;--end-x:0px;--end-y:-190px;--start-opacity:0.7;}
+.particle-container span:nth-child(4){animation-delay:-1.3s;--start-x:-2px;--start-y:15px;--end-x:-8px;--end-y:-220px;--start-opacity:0.6;transform:scale(1.1);}
+.particle-container span:nth-child(5){animation-delay:-1.7s;--start-x:-18px;--start-y:-10px;--end-x:10px;--end-y:-210px;--start-opacity:0.9;}
+.particle-container span:nth-child(6){animation-delay:-2.1s;--start-x:-17px;--start-y:0px;--end-x:-10px;--end-y:-230px;--start-opacity:0.4;transform:scale(0.9);}
+.particle-container span:nth-child(7){animation-delay:-2.5s;--start-x:-18px;--start-y:5px;--end-x:5px;--end-y:-170px;--start-opacity:0.7;}
+.particle-container span:nth-child(8){animation-delay:-2.9s;--start-x:18px;--start-y:-15px;--end-x:-5px;--end-y:-240px;--start-opacity:0.5;transform:scale(1.2);}
+.particle-container span:nth-child(9){animation-delay:-3.3s;--start-x:-18px;--start-y:8px;--end-x:8px;--end-y:-195px;--start-opacity:0.85;}
+.particle-container span:nth-child(10){animation-delay:-3.7s;--start-x:18px;--start-y:-20px;--end-x:-8px;--end-y:-225px;--start-opacity:0.65;transform:scale(0.7);}
+
+/* --- 背景パララックス関連のスタイル --- */
+#parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.bg-object {
+    position: absolute;
+    color: #000000;
+    will-change: transform;
+    font-family: 'Space Mono', monospace;
+}
+
+.bg-block {
+    /* スタイルはJSで直接設定 */
+}
+
+.bg-script {
+    font-size: 1.2em;
+    padding: 5px;
+    white-space: pre;
+}
+
+.bg-number {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.bg-kaomoji {
+    font-size: 1.5em;
+}
+
+@keyframes float-up {
+    0% { transform: translateY(0) scale(var(--scale)); }
+    100% { transform: translateY(-130vh) scale(var(--scale)); }
+}
