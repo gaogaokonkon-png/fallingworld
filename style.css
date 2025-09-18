@@ -1,72 +1,12 @@
-/* Google FontsからSpace Monoをインポート */
+/* (ファイル前半のパーティクル部分までは変更ありません) */
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
-
-/* ページ全体のスタイル */
-body {
-    margin: 0;
-    background-color: #ffffff;
-    overflow: hidden;
-}
-
-/* アニメーションの舞台となるコンテナ */
-.animation-container {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-}
-
-/* Cubeアイコンのスタイル */
-.cube-icon {
-    width: 6vmin; 
-    height: 6vmin;
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, -50%); 
-    animation: rotate-only 2.0s linear infinite;
-    z-index: 10;
-}
-
-/* アイコンの回転アニメーション */
-@keyframes rotate-only {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* --- アイコンから出るパーティクル関連のスタイル --- */
-.particle-container {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, -50%);
-    width: 15vmin;
-    height: 15vmin;
-    z-index: 5;
-}
-
-.particle-container span {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #cccccc;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    animation: particle-rise 1.0s linear infinite;
-}
-
-@keyframes particle-rise {
-    0% {
-        opacity: var(--start-opacity);
-        transform: translate(var(--start-x), var(--start-y)) rotate(0deg);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(var(--end-x), var(--end-y)) rotate(360deg);
-    }
-}
-
-/* 個々のパーティクルの設定 */
+body{margin:0;background-color:#ffffff;overflow:hidden;}
+.animation-container{width:100vw;height:100vh;position:relative;}
+.cube-icon{width:6vmin;height:6vmin;position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);animation:rotate-only 2.0s linear infinite;z-index:10;}
+@keyframes rotate-only{0%{transform:translate(-50%,-50%) rotate(0deg);}100%{transform:translate(-50%,-50%) rotate(360deg);}}
+.particle-container{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);width:15vmin;height:15vmin;z-index:5;}
+.particle-container span{position:absolute;width:20px;height:20px;background-color:#cccccc;left:50%;top:50%;transform:translate(-50%,-50%);animation:particle-rise 1.0s linear infinite;}
+@keyframes particle-rise{0%{opacity:var(--start-opacity);transform:translate(var(--start-x),var(--start-y)) rotate(0deg);}100%{opacity:0;transform:translate(var(--end-x),var(--end-y)) rotate(360deg);}}
 .particle-container span:nth-child(1){animation-delay:-0.1s;--start-x:-15px;--start-y:10px;--end-x:5px;--end-y:-180px;--start-opacity:0.8;}
 .particle-container span:nth-child(2){animation-delay:-0.5s;--start-x:15px;--start-y:-5px;--end-x:-5px;--end-y:-200px;--start-opacity:0.5;transform:scale(0.8);}
 .particle-container span:nth-child(3){animation-delay:-0.9s;--start-x:-10px;--start-y:20px;--end-x:0px;--end-y:-190px;--start-opacity:0.7;}
@@ -95,10 +35,6 @@ body {
     font-family: 'Space Mono', monospace;
 }
 
-.bg-block {
-    /* スタイルはJSで直接設定 */
-}
-
 .bg-script {
     font-size: 1.2em;
     padding: 5px;
@@ -114,7 +50,8 @@ body {
     font-size: 1.5em;
 }
 
+/* ▼▼▼ スマホでの偏りを修正するため、キーフレームを修正 ▼▼▼ */
 @keyframes float-up {
-    0% { transform: translateY(0) scale(var(--scale)); }
-    100% { transform: translateY(-130vh) scale(var(--scale)); }
+    0% { transform: translateX(-50%) translateY(0) scale(var(--scale)); }
+    100% { transform: translateY(-50%) translateY(-130vh) scale(var(--scale)); }
 }
