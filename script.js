@@ -6,36 +6,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ▼▼▼ スクリプトの種類を大幅に増やしました ▼▼▼
     const scriptSnippets = [
-        'Hello, World!', 'console.log("debug");',
-        'const data = fetch(url);', 'return true;',
-        'function gemini()', 'Array.map(n => n * 2)',
-        'let count = 0;', 'const PI = 3.14;',
-        'import { Gemini } from "gemini.js"', 'npm install gemini',
-        '<div></div>', '<p>Gemini</p>',
-        'color: #FFFFFF;', 'font-size: 16px;'
+        'Hello, World!', 'console.log("debug");', 'const data = fetch(url);',
+        'return true;', 'function gemini()', 'Array.map(n => n * 2)',
+        'let count = 0;', 'const PI = 3.14;', 'import { Gemini } from "gemini.js"',
+        'npm install gemini', '<div></div>', '<p>Gemini</p>', 'color: #FFFFFF;',
+        'font-size: 16px;', 'git commit -m "update"', 'SELECT * FROM users;',
+        'public static void main()', 'opacity: 1;', 'font-family: "Space Mono";'
     ];
     
-    // ▼▼▼ 顔文字のリストを新しく追加しました ▼▼▼
+    // ▼▼▼ 顔文字のリストを大幅に増やしました ▼▼▼
     const kaomoji = [
-        '(´・ω・`)', '(^_^)', '(>_<)',
-        'm(_ _)m', '(*^_^*)', '(^_^)v',
-        'orz', '(;_;)', '(-_-)zzz'
+        '(´・ω・`)', '(^_^)', '(>_<)', 'm(_ _)m', '(*^_^*)', '(^_^)v',
+        'orz', '(;_;)', '(-_-)zzz', '(*`ω´*)', '(・∀・)', 'Σ(ﾟДﾟ)',
+        '|дﾟ)', '(=^・^=)', 'm9(^Д^)'
     ];
 
-    const blockShapes = [
-        [{x:0,y:0},{x:0,y:1},{x:0,y:2},{x:1,y:2}],
-        [{x:0,y:0},{x:1,y:0},{x:2,y:0},{x:1,y:1}],
-        [{x:0,y:0},{x:1,y:0},{x:0,y:1},{x:1,y:1}],
-        [{x:0,y:0},{x:0,y:1},{x:0,y:2},{x:0,y:3}],
-        [{x:0,y:0},{x:1,y:0},{x:1,y:1},{x:2,y:1}]
-    ];
+    // blockShapesの配列は完全に削除しました
 
     for (let i = 0; i < NUM_OBJECTS; i++) {
         const object = document.createElement('div');
         object.classList.add('bg-object');
 
-        // ▼▼▼ 顔文字を追加したので、ランダムの種類を4つに変更 ▼▼▼
-        const type = Math.floor(Math.random() * 4);
+        // ▼▼▼ ブロックをなくし、3種類（数字、スクリプト、顔文字）からランダムに選択 ▼▼▼
+        const type = Math.floor(Math.random() * 3);
         
         let randomLeft = Math.random() * 100;
 
@@ -45,26 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (type === 1) { // スクリプト
             object.classList.add('bg-script');
             object.textContent = scriptSnippets[Math.floor(Math.random() * scriptSnippets.length)];
-            if (randomLeft > 70) randomLeft = Math.random() * 70;
-        } else if (type === 2) { // ブロック
-            object.classList.add('bg-block');
-            const shape = blockShapes[Math.floor(Math.random() * blockShapes.length)];
-            const blockSize = 10;
-            shape.forEach(pos => {
-                const subBlock = document.createElement('div');
-                subBlock.style.position = 'absolute';
-                subBlock.style.width = `${blockSize}px`;
-                subBlock.style.height = `${blockSize}px`;
-                subBlock.style.backgroundColor = '#000000';
-                subBlock.style.left = `${pos.x * blockSize}px`;
-                subBlock.style.top = `${pos.y * blockSize}px`;
-                object.appendChild(subBlock);
-            });
-        } else { // ▼▼▼ 顔文字の処理を新しく追加 ▼▼▼
+        } else { // 顔文字
             object.classList.add('bg-kaomoji');
             object.textContent = kaomoji[Math.floor(Math.random() * kaomoji.length)];
         }
         
+        // 右端調整のif文は、CSS側で根本的に解決するため不要になりました
+
         const randomScale = Math.random() * 0.6 + 0.2;
         const randomDuration = Math.random() * 25 + 20;
         const randomDelay = Math.random() * -40;
